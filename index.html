@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Moon Miner</title>
+</head>
+
+<body background="https://i.picsum.photos/id/120/4928/3264.jpg">
+    <header>
+        <h1 class="text-center text-light">Moon Miner</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row text-light">
+            <div class="col-4">
+                <h3 class="font-weight-bold"><span>Stats</span></h3>
+                <h5>Gold Per Second: </h5>
+                <h5>Total Gold Multiplier: </h5>
+            </div>
+            <div class="col-4">
+                <img class="img-fluid" src="Moonmine.jpeg" onclick="mine()">
+
+            </div>
+            <div class="col-4" id="update">
+                <h3 class="font-weight-bold"><span>Inventory</span></h3>
+                <h5>Gold: </h5>
+                <h5>Pick Axe: </h5>
+                <h5>Rover: </h5>
+                <h5>Moon Bases: </h5>
+                <h5>Aliens: </h5>
+            </div>
+        </div>
+        <div class="template row text-light">
+            <div class="col-6">
+                <h3 class="font-weight-bold"><span>Store</span></h3>
+                <div class="row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary" onclick="addPickaxe()">Pick Axe</button>
+                        <button type="button" class="btn btn-secondary" onclick="addRover()">Rover</button>
+
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary" onclick="addMoonHome()">Moon Base</button>
+                        <button type="button" class="btn btn-secondary in-line flex"
+                            onclick="addAliens()">Aliens</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>
