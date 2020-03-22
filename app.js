@@ -14,21 +14,21 @@ let clickUpgrades = {
         quantity: 0,
         multiplier: 1,
         turns: 0,
-        applied: false
+        applied: false,
     },
     rover: {
+        price: 50,
+        quantity: 0,
+        multiplier: 1,
+        turns: 0,
+        applied: false,
+    },
+    moonBase: {
         price: 100,
         quantity: 0,
         multiplier: 1,
         turns: 0,
-        applied: false
-    },
-    moonBase: {
-        price: 500,
-        quantity: 0,
-        multiplier: 1,
-        turns: 0,
-        applied: false
+        applied: false,
     }
 };
 
@@ -43,26 +43,35 @@ let automaticUpgrades = {
 
 
 function mine() {
-    if (inventory.pickaxe > 1) {
-        inventory.gold += 3
-    } else if (inventory.rover > 1) {
-        inventory.gold *= 2
-    } else if (inventory.moonBase > 1) {
-        inventory.gold *= 5
-    } else if (inventory.aliens > 1) {
-        inventory.gold *= 50
-    } else {
-        inventory.gold += 1;
+    if (inventory.pickaxe >= 1 && inventory.rover >= 1 && inventory.moonBase >= 1) {
+        inventory.gold += 62
+    } else if (inventory.pickaxe >= 1 && inventory.rover >= 1 && inventory.moonBase === 0) {
+        inventory.gold += 12
+    } else if (inventory.pickaxe >= 1 && inventory.moonBase >= 1 && inventory.rover === 0) {
+        inventory.gold += 52
+    } else if (inventory.rover >= 1 && inventory.moonBase >= 1 && inventory.pickaxe === 0) {
+        inventory.gold += 60
+    } else if (inventory.rover >= 1 && inventory.moonBase === 0 && inventory.pickaxe === 0) {
+        inventory.gold += 10
+    } else if (inventory.moonBase >= 1 && inventory.rover === 0 && inventory.pickaxe === 0) {
+        inventory.gold += 50
+    } else if (inventory.pickaxe >= 1 && inventory.rover === 0 && inventory.moonBase === 0) {
+        inventory.gold += 2
     }
+    inventory.gold += 1;
+
+
     update()
 }
 
-
+//TODO -Make decrement work
 function addPickaxe() {
     if (inventory.gold >= 10) {
         inventory.pickaxe += 1
         inventory.gold -= 10
+        clickUpgrades.pickaxe.turns = 3
     }
+    decrementClickUpgrades()
     update()
 }
 
@@ -86,9 +95,6 @@ function addMoonHome() {
 
 
 function addAliens() {
-    setInterval(() => {
-
-    }, interval);
     if (inventory.gold >= 50) {
         inventory.automaticUpgrades += 1
         inventory.gold -= 50
@@ -96,18 +102,24 @@ function addAliens() {
     update()
 }
 
-
-
-
-//FIXME
-function increasePrice() {
-    if (inventory.pickaxe > 1) {
-        clickUpgrades.pickaxe.price * 2
-    } else {
-        clickUpgrades.pickaxe.price
+//TODO get this function to work when applied
+function decrementClickUpgrades() {
+    if (clickUpgrades.pickaxe.turns > 1) {
+        clickUpgrades.pickaxe.turns--
     }
 }
-FIXME
+
+
+function collectAutoUpgrades() {
+    for (const key in automaticUpgrades) {
+        if (automaticUpgrades.hasOwnProperty(key)) {
+            const element = automaticUpgrades[key];
+            inventory.gold = gold *= 4
+        }
+    }
+}
+
+
 
 function update() {
     let template = ""
