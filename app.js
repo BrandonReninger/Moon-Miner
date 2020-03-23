@@ -11,21 +11,21 @@ let clickUpgrades = {
     pickaxe: {
         price: 10,
         quantity: 0,
-        multiplier: 1,
+        multiplier: +2,
         turns: 0,
         applied: false,
     },
     rover: {
         price: 20,
         quantity: 0,
-        multiplier: 1, // FIXME change the multiplier
+        multiplier: 2, // FIXME change the multiplier
         turns: 0,
         applied: false,
     },
     moonBase: {
         price: 30,
         quantity: 0,
-        multiplier: 1,
+        multiplier: 3,
         turns: 0,
         applied: false,
     }
@@ -33,16 +33,24 @@ let clickUpgrades = {
 
 let automaticUpgrades = {
     aliens: {
-        price: 100,
+        price: 50,
         quantity: 0,
-        multiplier: 1,
+        multiplier: 4,
         applied: false,
     }
 };
 
 
 function mine() {
-    if (inventory.pickaxe >= 1 && inventory.rover >= 1 && inventory.moonBase >= 1) {
+    let total = 1
+
+    for (const key in clickUpgrades) {
+        if (clickUpgrades.hasOwnProperty(key)) {
+            const element = clickUpgrades[key];
+
+        }
+    }
+    /*if (inventory.pickaxe >= 1 && inventory.rover >= 1 && inventory.moonBase >= 1) {
         inventory.gold += 62
     } else if (inventory.pickaxe >= 1 && inventory.rover >= 1 && inventory.moonBase === 0) {
         inventory.gold += 12
@@ -56,9 +64,8 @@ function mine() {
         inventory.gold += 50
     } else if (inventory.pickaxe >= 1 && inventory.rover === 0 && inventory.moonBase === 0) {
         inventory.gold += 2
-    }
+    }*/
 
-    let total = 1
 
     // FIXME iterate through clickupgrades and build a sum
 
@@ -83,28 +90,32 @@ function addPickaxe() {
 
 
 function addRover() {
-    if (inventory.gold >= 20) {
+    if (inventory.gold >= clickUpgrades.addRover.price) {
         inventory.rover += 1
         inventory.gold -= 20
+        clickUpgrades.rover.price *= 2
     }
     update()
 }
 
 
 function addMoonHome() {
-    if (inventory.gold >= 30) {
+    if (inventory.gold >= clickUpgrades.moonBase.price) {
         inventory.moonBase += 1
         inventory.gold -= 30
+        clickUpgrades.moonBase.price *= 2
     }
     update()
 }
 
 
 function addAliens() {
-    if (inventory.gold >= 50) {
+    if (inventory.gold >= automaticUpgrades.aliens.price) {
         inventory.gold -= 50
+        automaticUpgrades.aliens.price *= 2
         // FIXME increment quantity 
     }
+    startInterval()
     update()
 }
 
@@ -129,7 +140,7 @@ function startInterval() {
     collectionInterval = setInterval(collectAutoUpgrades, 3000)
 }
 // START Interval 
-startInterval()
+
 
 function collectAutoUpgrades() {
     for (const key in automaticUpgrades) {
