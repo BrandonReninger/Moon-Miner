@@ -5,7 +5,6 @@ let inventory = {
     pickaxe: 0,
     rover: 0,
     moonBase: 0,
-    automaticUpgrades: 0
 }
 
 let clickUpgrades = {
@@ -17,14 +16,14 @@ let clickUpgrades = {
         applied: false,
     },
     rover: {
-        price: 50,
+        price: 20,
         quantity: 0,
         multiplier: 1,
         turns: 0,
         applied: false,
     },
     moonBase: {
-        price: 100,
+        price: 30,
         quantity: 0,
         multiplier: 1,
         turns: 0,
@@ -34,7 +33,7 @@ let clickUpgrades = {
 
 let automaticUpgrades = {
     aliens: {
-        price: 1000,
+        price: 100,
         quantity: 0,
         multiplier: 1,
         applied: false,
@@ -58,7 +57,7 @@ function mine() {
     } else if (inventory.pickaxe >= 1 && inventory.rover === 0 && inventory.moonBase === 0) {
         inventory.gold += 2
     }
-    inventory.gold += 1;
+    inventory.gold += 1
 
 
     update()
@@ -66,12 +65,14 @@ function mine() {
 
 //TODO -Make decrement work
 function addPickaxe() {
-    if (inventory.gold >= 10) {
+    if (inventory.gold >= clickUpgrades.pickaxe.price) {
         inventory.pickaxe += 1
         inventory.gold -= 10
         clickUpgrades.pickaxe.turns = 3
+        clickUpgrades.pickaxe.price * 2
+    } else {
+        console.log("You don't have enough gold bud.")
     }
-    decrementClickUpgrades()
     update()
 }
 
@@ -96,25 +97,39 @@ function addMoonHome() {
 
 function addAliens() {
     if (inventory.gold >= 50) {
-        inventory.automaticUpgrades += 1
         inventory.gold -= 50
+
     }
     update()
 }
 
 //TODO get this function to work when applied
-function decrementClickUpgrades() {
+/*function decrementClickUpgrades() {
     if (clickUpgrades.pickaxe.turns > 1) {
         clickUpgrades.pickaxe.turns--
+    } else {
+        inventory.gold += 1
     }
+
+    if (clickUpgrades.rover.turns > 1) {
+        clickUpgrades.rover.turns--
+    } else {
+        inventory.gold += 1
+    }
+} */
+
+function setInterval() {
+    let collectionInterval = 0
+    collectionInterval = setInterval(collectAutoUpgrades, 3000)
 }
 
 
 function collectAutoUpgrades() {
-    for (const key in automaticUpgrades) {
-        if (automaticUpgrades.hasOwnProperty(key)) {
-            const element = automaticUpgrades[key];
-            inventory.gold = gold *= 4
+    for (const key in collectAutoUpgrades) {
+        if (collectAutoUpgrades.hasOwnProperty(key)) {
+            const element = collectAutoUpgrades[key];
+            console.log(element)
+
         }
     }
 }
@@ -131,7 +146,6 @@ function update() {
                 <h5>Pick Axe: ${inventory.pickaxe} </h5>
                 <h5>Rover: ${inventory.rover}</h5>
                 <h5>Moon Bases: ${inventory.moonBase}</h5>
-                <h5>Aliens: ${inventory.automaticUpgrades}</h5>
             </div>
     `
     let mytemplate = document.getElementById("update").innerHTML = template
