@@ -95,12 +95,13 @@ function addMoonHome() {
 function addAliens() {
     if (inventory.gold >= automaticUpgrades.aliens.price) {
         inventory.gold -= 50
+        automaticUpgrades.aliens.quantity += 1
         automaticUpgrades.aliens.applied === true
         automaticUpgrades.aliens.price *= 2
     }
-
     update()
 }
+
 let collectionInterval = 0
 
 function startInterval() {
@@ -113,13 +114,12 @@ function startInterval() {
 function collectAutoUpgrades() {
     for (const quantity in automaticUpgrades) {
         if (automaticUpgrades.hasOwnProperty(quantity)) {
-            let autoQuantity = automaticUpgrades[quantity].quantity;
-            let autoMultiplier = automaticUpgrades[quantity].multiplier;
-            inventory.gold += (autoQuantity * autoMultiplier);
+            inventory.gold += (automaticUpgrades[quantity].quantity * automaticUpgrades[quantity].multiplier)
         }
     }
     update()
 }
+
 
 
 
@@ -152,8 +152,6 @@ let aliensCost = document.getElementById("alien-cost")
 aliensCost.innerText = automaticUpgrades.aliens.price.toString()
 
 startInterval()
-
-
 
 
 //TODO get this function to work when applied
