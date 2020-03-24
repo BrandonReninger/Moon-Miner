@@ -97,30 +97,28 @@ function addAliens() {
         inventory.gold -= 50
         automaticUpgrades.aliens.applied === true
         automaticUpgrades.aliens.price *= 2
-        // FIXME increment quantity 
     }
 
     update()
 }
-
-
 let collectionInterval = 0
 
 function startInterval() {
     collectionInterval = setInterval(collectAutoUpgrades, 3000)
 }
-// START Interval 
+
 
 
 
 function collectAutoUpgrades() {
     for (const quantity in automaticUpgrades) {
         if (automaticUpgrades.hasOwnProperty(quantity)) {
-            const element = automaticUpgrades[key];
-            console.log(automaticUpgrades.quantity)
-
+            let autoQuantity = automaticUpgrades[quantity].quantity;
+            let autoMultiplier = automaticUpgrades[quantity].multiplier;
+            inventory.gold += (autoQuantity * autoMultiplier);
         }
     }
+    update()
 }
 
 
@@ -139,6 +137,23 @@ function update() {
     `
     let mytemplate = document.getElementById("update").innerHTML = template
 }
+
+//Pricing
+let pickaxeCost = document.getElementById("pickaxe-cost")
+pickaxeCost.innerText = clickUpgrades.pickaxe.price.toString()
+
+let roverCost = document.getElementById("rover-cost")
+roverCost.innerText = clickUpgrades.rover.price.toString()
+
+let moonBaseCost = document.getElementById("moonBase-cost")
+moonBaseCost.innerText = clickUpgrades.moonBase.price.toString()
+
+let aliensCost = document.getElementById("alien-cost")
+aliensCost.innerText = automaticUpgrades.aliens.price.toString()
+
+startInterval()
+
+
 
 
 //TODO get this function to work when applied
