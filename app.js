@@ -56,7 +56,7 @@ function mine() {
 function addPickaxe() {
     if (inventory.gold >= clickUpgrades.pickaxe.price) {
         inventory.pickaxe += 1
-        inventory.gold -= 10
+        inventory.gold -= clickUpgrades.pickaxe.price
         clickUpgrades.pickaxe.quantity += 1
         clickUpgrades.pickaxe.applied == true
         clickUpgrades.pickaxe.price *= 2
@@ -71,7 +71,7 @@ function addPickaxe() {
 function addRover() {
     if (inventory.gold >= clickUpgrades.rover.price) {
         inventory.rover += 1
-        inventory.gold -= 20
+        inventory.gold -= clickUpgrades.rover.price
         clickUpgrades.rover.quantity += 1
         clickUpgrades.rover.applied === true
         clickUpgrades.rover.price *= 2
@@ -83,7 +83,7 @@ function addRover() {
 function addMoonHome() {
     if (inventory.gold >= clickUpgrades.moonBase.price) {
         inventory.moonBase += 1
-        inventory.gold -= 30
+        inventory.gold -= clickUpgrades.moonBase.price
         clickUpgrades.moonBase.quantity += 1
         clickUpgrades.moonBase.applied === true
         clickUpgrades.moonBase.price *= 2
@@ -94,7 +94,7 @@ function addMoonHome() {
 
 function addAliens() {
     if (inventory.gold >= automaticUpgrades.aliens.price) {
-        inventory.gold -= 50
+        inventory.gold -= automaticUpgrades.aliens.price
         automaticUpgrades.aliens.quantity += 1
         automaticUpgrades.aliens.applied === true
         automaticUpgrades.aliens.price *= 2
