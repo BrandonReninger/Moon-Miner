@@ -120,8 +120,29 @@ function collectAutoUpgrades() {
     update()
 }
 
+//TODO get gold counter/sec up and running
+function goldCounter() {
+    if (inventory.gold += 1) {
+
+    }
+}
+
+function startCounterInterval() {
+    counter = setInterval()
+}
 
 
+function stats() {
+    let statTemplate = ""
+
+    statTemplate += /*html*/ `
+        <div class="stat-template col-4">
+            <h3 class="font-weight-bold"><span>Stats</span></h3>
+            <h5>Gold Per Second: </h5>
+            <h5>Total Gold Multiplier: </h5>
+        </div>
+        `
+}
 
 function update() {
     let template = ""
